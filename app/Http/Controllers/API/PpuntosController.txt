@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Punto;
+
+class PuntosController extends Controller
+{
+
+    public function index($id_partidos)
+    {
+        $punto = Punto::find($id_partidos);
+        return $punto;
+    }
+
+
+    public function create()
+    {
+        //
+    }
+
+
+    public function store(Request $request)
+    {
+        $punto = new Punto;
+        $punto->id_partidos = $request->input('id_partidos');
+        $punto->equipo = $request->input('equipo');
+        $punto->puntos = $request->input('puntos');
+
+
+        $punto->save();
+    }
+
+
+    public function show()
+    {
+        $punto = Punto::All();
+        return $punto;
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+
+    public function update(Request $request, $id_partidos)
+    {
+        $punto = Punto::find($id_partidos);
+        $punto -> update($request->all());
+    }
+
+
+    public function destroy($id_partidos)
+    {
+        $punto = Punto::destroy($id_partidos);
+        return $punto;
+    }
+
+}
